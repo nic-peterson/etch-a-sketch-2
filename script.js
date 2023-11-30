@@ -8,11 +8,33 @@ function createButton() {
   document.body.appendChild(button);
 
   button.addEventListener("click", function () {
-    const gridItems = document.querySelectorAll(".grid-item");
-    gridItems.forEach((item) => {
-      item.classList.remove("active");
-    });
+    clearGrid();
+    let num;
+    do {
+      num = prompt("Enter grid size");
+      if (num > 100) {
+        alert("Grid size must be less than 100");
+        num = 16;
+      }
+      if (num < 1) {
+        alert("Grid size must be greater than 0");
+        num = 16;
+      }
+      if (num === null) {
+        alert("User cancelled the input.");
+        num = 16;
+        break;
+      }
+    } while (num && num.length > 100);
+
+    createGridContainer();
+    createGrid(num);
   });
+}
+
+function clearGrid() {
+  const gridContainer = document.querySelector(".grid-container");
+  gridContainer.remove();
 }
 
 function createGridContainer() {
@@ -24,15 +46,15 @@ function createGridContainer() {
   document.body.appendChild(gridContainer);
 }
 
-function createGrid() {
+function createGrid(num = 16, size = 160) {
   const gridContainer = document.querySelector(".grid-container");
 
-  for (let i = 0; i < 16; i++) {
-    for (let j = 0; j < 16; j++) {
+  for (let i = 0; i < num; i++) {
+    for (let j = 0; j < num; j++) {
       const gridItem = document.createElement("div");
       gridItem.classList.add("grid-item");
-      gridItem.style.width = "10px";
-      gridItem.style.height = "10px";
+      gridItem.style.width = size / num + "px";
+      gridItem.style.height = size / num + "px";
       gridContainer.appendChild(gridItem);
 
       gridItem.addEventListener("mouseover", function () {
