@@ -9,7 +9,7 @@ body {
   flex-wrap: wrap;
   width: 16rem; /* Adjust the width as needed */
   height: 16rem; /* Adjust the height as needed */
-  background-color: red;
+  background-color: #eee;
   margin: 2rem auto;
 }
 
