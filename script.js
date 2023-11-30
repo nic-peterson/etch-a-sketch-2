@@ -1,3 +1,10 @@
+function getRandomColor() {
+  const red = Math.floor(Math.random() * 256); // Random between 0-255
+  const green = Math.floor(Math.random() * 256); // Random between 0-255
+  const blue = Math.floor(Math.random() * 256); // Random between 0-255
+  return `rgb(${red}, ${green}, ${blue})`; // Template string for RGB
+}
+
 function createButton() {
   const button = document.createElement("button");
   button.textContent = "Reset";
@@ -59,6 +66,7 @@ function createGrid(num = 16, size = 160) {
 
       gridItem.addEventListener("mouseover", function () {
         gridItem.classList.add("active");
+        gridItem.style.backgroundColor = getRandomColor();
       });
     }
   }
