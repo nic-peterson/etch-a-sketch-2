@@ -5,6 +5,25 @@ function getRandomColor() {
   return `rgb(${red}, ${green}, ${blue})`; // Template string for RGB
 }
 
+function darkenColor(element) {
+  const reductionFactor = 25.5; // 10% of 255
+
+  let interactionCount =
+    parseInt(element.getAttribute("data-interaction-count")) || 0;
+  if (interactionCount < 10) {
+    interactionCount++;
+    element.setAttribute("data-interaction-count", interactionCount);
+    const color = element.style.backgroundColor.match(/\d+/g); // Get RGB values
+    const red = Math.max(color.red - reductionFactor * interactionCount, 0);
+    const green = Math.max(color.green - reductionFactor * interactionCount, 0);
+    const blue = Math.max(color.blue - reductionFactor * interactionCount, 0);
+    element.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+  }
+  if (interactionCount >= 10) {
+    element.style.backgroundColor = "black";
+  }
+}
+
 function createButton() {
   const button = document.createElement("button");
   button.textContent = "Reset";
@@ -62,11 +81,15 @@ function createGrid(num = 16, size = 160) {
       gridItem.classList.add("grid-item");
       gridItem.style.width = size / num + "px";
       gridItem.style.height = size / num + "px";
+      gridItem.setAttribute("data-interaction-count", 0); // Initialize interaction count
+
       gridContainer.appendChild(gridItem);
 
       gridItem.addEventListener("mouseover", function () {
         gridItem.classList.add("active");
         gridItem.style.backgroundColor = getRandomColor();
+        darkenColor(gridItem);
+        console.log(gridItem);
       });
     }
   }
