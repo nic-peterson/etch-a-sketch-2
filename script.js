@@ -1,3 +1,20 @@
+function createButton() {
+  const button = document.createElement("button");
+  button.textContent = "Reset";
+  button.style.width = "100px";
+  button.style.height = "50px";
+  button.style.margin = "10px";
+
+  document.body.appendChild(button);
+
+  button.addEventListener("click", function () {
+    const gridItems = document.querySelectorAll(".grid-item");
+    gridItems.forEach((item) => {
+      item.classList.remove("active");
+    });
+  });
+}
+
 function createGridContainer() {
   const gridContainer = document.createElement("div");
   gridContainer.classList.add("grid-container");
@@ -25,5 +42,6 @@ function createGrid() {
   }
 }
 
+createButton();
 createGridContainer();
 createGrid();

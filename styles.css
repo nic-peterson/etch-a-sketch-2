@@ -5,6 +5,10 @@ body {
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .grid-container {
@@ -12,9 +16,12 @@ body {
   flex-wrap: wrap;
 
   background-color: #eee;
-  margin: 2rem auto;
 }
 
 .active {
   background-color: black;
+}
+
+button {
+  margin: 0 auto;
 }
