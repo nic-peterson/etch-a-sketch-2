@@ -20,3 +20,7 @@ body {
   width: 1rem; /* Adjust the width as needed */
   height: 1rem; /* Adjust the height as needed */
 }
+
+.active {
+  background-color: black;
+}
